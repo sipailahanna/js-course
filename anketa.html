@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anketa</title>
+    <script>
+        const MALE = 'мужчина';
+        const FEMALE = 'женщина';
+
+        function askForTextInput(askedFieldName) {
+            const answer = prompt(`Please enter your ${askedFieldName}:`);
+            if (!answer || answer.trim() === "" || answer === 'null') {
+                askForTextInput(askedFieldName);  // Recurse to ask again
+            }
+            return answer;           
+        }
+
+        function isAgeAnswerProvided(answer) {
+            return answer && answer.trim() !== "" && answer !== 'null';
+        }
+
+        function isAgeAnswerHasNumber(answer) {
+            return answer.trim().match(/\d+/g) !== null;
+        }
+
+        function isAgeValid(age) {
+            return !isNaN(age) && (age > 0 && age < 110);
+        }
+
+        function askForAge() {
+            const answer = prompt('Please enter your age:');
+            if(isAgeAnswerProvided(answer) && isAgeAnswerHasNumber(answer) && isAgeValid(answer)) {
+                const ageStr = answer.trim().match(/\d+/g)[0];
+                return Number(ageStr);
+            } else {
+                return askForAge();
+            }
+        }
+
+        function askForGender() {
+            const isMale = confirm('Ваш пол - мужской?');
+            const gender = isMale ? MALE : FEMALE;
+            return gender;
+        }
+
+        function isPersonRetired (age, gender) {
+            let retirementAge;
+            if(gender === FEMALE) {
+                retirementAge = 55;
+            } else {
+                retirementAge = 65;
+            }
+            return isRetired(age, retirementAge);
+        }
+
+        function isRetired(userAge, retirementAge) {
+            return (userAge >= retirementAge) ? 'да' : 'нет'; 
+        }
+    
+        window.onload = function() {
+            const surname = askForTextInput('surname');
+            const name = askForTextInput('name');
+            const patronymic = askForTextInput('patronymic');
+            const ageInYears = askForAge();
+            const ageInDays = ageInYears*365;
+            const gender = askForGender();
+            const isRetired = isPersonRetired(ageInYears, gender);
+
+            alert(`имя: ${name}\nфамилия: ${surname}\nотчество: ${patronymic}\nвозраст: ${ageInYears}\nвозраст в днях: ${ageInDays}\nвозраст через 5 лет: ${ageInYears + 5}\nпол: ${gender}\nна пенсии:${isRetired}`);
+        }
+    </script>
+    
+</head>
+<body>
+    <h1>ANKETA</h1>
+    <p>The page will ask for your personal details when you open it.</p>
+</body>
+</html>
