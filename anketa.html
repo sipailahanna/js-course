@@ -12,7 +12,7 @@
         function askForTextInput(askedFieldName) {
             const answer = prompt(`Please enter your ${askedFieldName}:`);
             if (!answer || answer.trim() === "" || answer === 'null') {
-                askForTextInput(askedFieldName);  // Recurse to ask again
+                return askForTextInput(askedFieldName);  // Recurse to ask again
             }
             return answer;           
         }
