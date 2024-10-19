@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Хранилище рецептов напитков</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .output {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            max-width: 400px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Хранилище рецептов напитков</h1>
+
+<button id="addDrink">Добавить напиток</button>
+<button id="getDrink">Получить информацию о напитке</button>
+<button id="deleteDrink">Удалить информацию о напитке</button>
+<button id="listDrinks">Перечень всех напитков</button>
+<div class="output" id="output"></div>
+
+<script src="./ObjStorageClass.js"></script>
+<script>
+
+const recipeStorage = new ObjStorageClass();
+const outputElement = document.getElementById('output');
+
+document.getElementById('addDrink').onclick = function() {
+    const name = prompt('Введите название напитка:');
+    const isAlcoholic = confirm('Этот напиток алкогольный? (ОК - Да, Отмена - Нет)');
+    const recipe = prompt('Введите рецепт приготовления напитка:');
+    
+    if (name && recipe) {
+        const drinkInfo = {
+            alcoholic: isAlcoholic ? 'да' : 'нет',
+            recipe
+        };
+        recipeStorage.addValue(name, drinkInfo);
+        outputElement.textContent = `Напиток "${name}" добавлен в хранилище`;
+    } else {
+        outputElement.textContent = 'Введите название и рецепт приготовения напитка';
+    }
+};
+
+document.getElementById('getDrink').onclick = function() {
+    const name = prompt('Введите название напитка:');
+    const drink = recipeStorage.getValue(name);
+    
+    if (drink) {
+        outputElement.textContent = `Название: ${name}\n Алкогольный: ${drink.alcoholic}\n Рецепт: ${drink.recipe}`;
+    } else {
+        outputElement.textContent = `Напиток "${name}" не найден`;
+    }
+};
+
+document.getElementById('deleteDrink').onclick = function() {
+    const name = prompt('Введите название напитка для удаления:');
+    const result = recipeStorage.deleteValue(name);
+    
+    if (result) {
+        outputElement.textContent = `Напиток "${name}" удалён из хранилища`;
+    } else {
+        outputElement.textContent = `Напиток с названием "${name}" не найден`;
+    }
+};
+
+document.getElementById('listDrinks').onclick = function() {
+    const drinks = recipeStorage.getKeys();
+    
+    if (drinks.length > 0) {
+        outputElement.textContent = `Список напитков:\n${drinks.join()}`;
+    } else {
+        outputElement.textContent = 'Хранилище напитков пусто';
+    }
+};
+
+</script>
+
+</body>
+</html>
