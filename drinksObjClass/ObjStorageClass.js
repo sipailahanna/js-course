@@ -1,27 +1,26 @@
 class ObjStorageClass {
-    #storage;
 
     constructor() {
         this.storage = {};
     }
 
     addValue = function (key, value) {
-        storage[key] = value;
+        this.storage[key] = value;
     };
 
     getValue = function (key) {
-        return storage.hasOwnProperty(key) ? storage[key] : undefined;
+        return this.storage.hasOwnProperty(key) ? this.storage[key] : undefined;
     };
 
     deleteValue = function (key) {
-        if (storage.hasOwnProperty(key)) {
-            delete storage[key];
+        if (this.storage.hasOwnProperty(key)) {
+            delete this.storage[key];
             return true;
         }
         return false;
     };
 
     getKeys = function () {
-        return Object.keys(storage);
+        return Object.keys(this.storage);
     };
 }
