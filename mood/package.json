@@ -1,0 +1,12 @@
+{
+  "name": "mood",
+  "version": "1.0.0",
+  "description": "",
+  "main": "mood.js",
+  "scripts": {
+    "start": "node mood.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
