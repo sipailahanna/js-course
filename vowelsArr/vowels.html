@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vowels</title>
+    <style>
+        button {
+            font-size: 16px;
+        }
+    </style>
+    <h1>VOWELS</h1>
+    <p>Подсчитаю гласные в строке</p>
+    <button id="forEach">используй forEach</button>
+    <button id="filter">используй filter</button>
+    <button id="reduce">используй reduce</button>
+    <script>
+        const vowels = ['а', 'е', 'ё', 'и', 'о', 'у', 'ы', 'э', 'ю', 'я'];
+
+        function countVowelsForEach(answer) {
+            const answerInLowerCase = answer.toLowerCase().split("");
+            let count = 0;
+            answerInLowerCase.forEach(char => {
+                if(vowels.includes(char)){
+                    count++;
+                }
+            });
+            return count;            
+        }
+
+        function countVowelsFilter(answer) {
+            const answerInLowerCase = answer.toLowerCase().split("");
+            return answerInLowerCase.filter(char => vowels.includes(char));
+        }
+
+        function countVowelsReduce(answer) {
+            const answerInLowerCase = answer.toLowerCase().split("");
+            const count = answerInLowerCase.reduce((accumulator, char) => vowels.includes(char) ? accumulator + 1 : accumulator, 0);
+            return count;
+        }
+
+        document.getElementById("forEach").onclick = function () {
+            do {
+                const answer = prompt('Введите строку (использую forEach):');
+                const count = countVowelsForEach(answer);
+                alert(`Ваша строка: ${answer}\nКоличество гласных = ${count}`);
+            } while (count = 0);
+        }
+
+        document.getElementById("filter").onclick = function () {
+            do {
+                const answer = prompt('Введите строку (использую filter):');
+                const count = countVowelsForEach(answer);
+                alert(`Ваша строка: ${answer}\nКоличество гласных = ${count}`);
+            } while (count = 0);
+        }
+        
+        document.getElementById("reduce").onclick = function () {
+            do {
+                const answer = prompt('Введите строку (использую reduce):');
+                const count = countVowelsReduce(answer);
+                alert(`Ваша строка: ${answer}\nКоличество гласных = ${count}`);
+            } while (count = 0);
+        }
+    </script>
+</head>
+</html>
