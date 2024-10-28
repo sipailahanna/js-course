@@ -1,0 +1,9 @@
+.fixed-label {
+    display: inline-block; 
+    width: 200px;          
+    text-align: left; 
+}
+
+.container {
+    margin-bottom: 10px;
+}

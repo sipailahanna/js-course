@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<script src="./buildForm.js"></script>
+<script>
+    const form1 = [
+        { label: 'Имя', kind: "longtext", name: "name" },
+        { label: 'Фамилия', kind: "longtext", name: "lastname" },
+        { label: 'Отчество', kind: "longtext", name: "secondname" },
+        { label: 'Возраст', kind: "number", name: "age" },
+        { caption: "Опубликовать", kind: "submit" }
+    ];
+    const form2 = [
+        { label: 'Название сайта:', kind: 'longtext', name: 'sitename' },
+        { label: 'URL сайта:', kind: 'longtext', name: 'siteurl' },
+        { label: 'Посетителей в сутки:', kind: 'number', name: 'visitors' },
+        { label: 'E-mail для связи:', kind: 'shorttext', name: 'email' },
+        {
+            label: 'Рубрика каталога:', kind: 'dropdown', name: 'division',
+            variants: [
+                { text: 'здоровье', value: 1 }, { text: 'домашний уют', value: 2 }, { text: 'бытовая техника', value: 3 }
+            ]
+        },
+        {
+            label: 'Размещение:', kind: 'radio', name: 'payment',
+            variants: [
+                { text: 'бесплатное', value: 1 }, { text: 'платное', value: 2 }, { text: 'VIP', value: 3 }
+            ]
+        },
+        { label: 'Разрешить отзывы:', kind: 'check', name: 'votes' },
+        { label: 'Описание сайта:', kind: 'memo', name: 'description' },
+        { caption: 'Опубликовать', kind: 'submit' },
+    ];
+
+    window.onload = function () {
+        new buildForm(form1, "form1");
+        new buildForm(form2, "form2");
+    }
+</script>
+
+<body>
+    <h1>DYN FORM task</h1>
+</body>
+
+</html>
