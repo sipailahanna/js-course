@@ -31,7 +31,9 @@
 
         function countVowelsFilter(answer) {
             const answerInLowerCase = answer.toLowerCase().split("");
-            return answerInLowerCase.filter(char => vowels.includes(char));
+            const vowelsFromAnswer = answerInLowerCase.filter(char => vowels.includes(char));
+            console.log(vowelsFromAnswer);
+            return vowelsFromAnswer.length;
         }
 
         function countVowelsReduce(answer) {
@@ -51,7 +53,7 @@
         document.getElementById("filter").onclick = function () {
             do {
                 const answer = prompt('Введите строку (использую filter):');
-                const count = countVowelsForEach(answer);
+                const count = countVowelsFilter(answer);
                 alert(`Ваша строка: ${answer}\nКоличество гласных = ${count}`);
             } while (count = 0);
         }
