@@ -7,60 +7,80 @@
 <body>
     <form id="myForm" action="https://fe.it-academy.by/TestForm.php">
 
-        <label for="developers">Разработчики:</label>
-        <input type="text" id="developers" name="developers">
-        <span class="error" id="developersError"></span>
+        <div class="form-group">
+            <label for="developers">Разработчики:</label>
+            <input type="text" id="developers" name="developers">
+            <span class="error" id="developersError"></span>
+        </div>
 
-        <label for="siteName">Название сайта:</label>
-        <input type="text" id="siteName" name="siteName">
-        <span class="error" id="siteNameError"></span>
+        <div class="form-group">
+            <label for="siteName">Название сайта:</label>
+            <input type="text" id="siteName" name="siteName">
+            <span class="error" id="siteNameError"></span>
+        </div>
 
-        <label for="siteUrl">URL сайта:</label>
-        <input type="text" id="siteUrl" name="siteUrl">
-        <span class="error" id="siteUrlError"></span>
+        <div class="form-group">
+            <label for="siteUrl">URL сайта:</label>
+            <input type="text" id="siteUrl" name="siteUrl">
+            <span class="error" id="siteUrlError"></span>
+        </div>
 
-        <label for="launchDate">Дата запуска сайта:</label>
-        <input type="date" id="launchDate" name="launchDate">
-        <span class="error" id="launchDateError"></span>
+        <div class="form-group">
+            <label for="launchDate">Дата запуска сайта:</label>
+            <input type="date" id="launchDate" name="launchDate">
+            <span class="error" id="launchDateError"></span>
+        </div>
 
-        <label for="dailyVisitors">Посетителей в сутки:</label>
-        <input type="number" id="dailyVisitors" name="dailyVisitors">
-        <span class="error" id="dailyVisitorsError"></span>
+        <div class="form-group">
+            <label for="dailyVisitors">Посетителей в сутки:</label>
+            <input type="number" id="dailyVisitors" name="dailyVisitors">
+            <span class="error" id="dailyVisitorsError"></span>
+        </div>
 
-        <label for="contactEmail">Email для связи:</label>
-        <input type="email" id="contactEmail" name="contactEmail">
-        <span class="error" id="contactEmailError"></span>
+        <div class="form-group">
+            <label for="contactEmail">Email для связи:</label>
+            <input type="email" id="contactEmail" name="contactEmail">
+            <span class="error" id="contactEmailError"></span>
+        </div>
 
-        <label for="category">Рубрика каталога:</label>
-        <select id="category" name="category">
-            <option value="">Выберите рубрику</option>
-            <option value="btk">Бытовая техника</option>
-            <option value="kp">Кухонные принадлежности</option>
-            <option value="phones">Телефоны</option>
-        </select>
-        <span class="error" id="categoryError"></span>
+        <div class="form-group">
+            <label for="category">Рубрика каталога:</label>
+            <select id="category" name="category">
+                <option value="">Выберите рубрику</option>
+                <option value="btk">Бытовая техника</option>
+                <option value="kp">Кухонные принадлежности</option>
+                <option value="phones">Телефоны</option>
+            </select>
+            <span class="error" id="categoryError"></span>
+        </div>
 
-        <label>Размещение:</label>
-        <label>
-            <input type="radio" name="placement" value="VIP"> VIP
-        </label>
-        <label>
-            <input type="radio" name="placement" value="free"> Бесплатное
-        </label>
-        <label>
-            <input type="radio" name="placement" value="paid"> Платное
-        </label>
-        <span class="error" id="placementError"></span>
+        <div class="form-group">
+            <label>Размещение:</label>
+            <div>
+                <label>
+                    <input type="radio" name="placement" id="placement" value="VIP"> VIP
+                </label>
+                <label>
+                    <input type="radio" name="placement" id="placement" value="free"> Бесплатное
+                </label>
+                <label>
+                    <input type="radio" name="placement" id="placement" value="paid"> Платное
+                </label>
+            </div>
+            <span class="error" id="placementError"></span>
+        </div>
 
-        <div class="checkbox-container">
+        <div class="form-group checkbox-container">
             <label for="allowReviews">Разрешить отзывы</label>
             <input type="checkbox" id="allowReviews" name="allowReviews"> 
+            <span class="error" id="allowReviewsError"></span>
         </div>
-        <span class="error" id="allowReviewsError"></span>
 
-        <label for="siteDescription">Описание сайта:</label>
-        <textarea id="siteDescription" name="siteDescription"></textarea>
-        <span class="error" id="siteDescriptionError"></span>
+        <div class="form-group">
+            <label for="siteDescription">Описание сайта:</label>
+            <textarea id="siteDescription" name="siteDescription"></textarea>
+            <span class="error" id="siteDescriptionError"></span>
+        </div>
 
         <button type="submit">Опубликовать</button>
     </form>

@@ -2,7 +2,7 @@ const form = document.getElementById('myForm');
 
 form.querySelectorAll("input, textarea, select").forEach(field => {
     field.addEventListener("blur", () => validateField(field));
-    if (field.type === "checkbox") {
+    if (field.type === "checkbox" || field.type === "radio" || field.id === "category") {
         field.addEventListener("change", () => validateField(field));
     }
 });
@@ -13,18 +13,20 @@ const validationRules = {
     siteUrl: "Введите корректный URL (например, http://example.com).",
     siteDescription: "Поле 'Описание сайта' не может быть пустым.",
     largeSiteDescription: "Описание сайта не может превышать 10 символов.",
-    launchDate: "Поле 'Дата запуска сайта' не может быть пустым."
+    launchDate: "Поле 'Дата запуска сайта' не может быть пустым.",
+    placement: "Выберите один из вариантов размещения."
 };
 
 form.addEventListener("submit", (event) => {
     let isFormValid = true;
+    let firstInvalidField = null;
     const fields = form.querySelectorAll("input, textarea, select");
     
     fields.forEach(field => {
-        if (!validateField(field)) {
-            if (isFormValid) {
-                field.scrollIntoView({ behavior: "smooth", block: "center" });
-                field.focus();
+        const isFieldValid = validateField(field);
+        if (!isFieldValid) {
+            if (!firstInvalidField) {
+                firstInvalidField = field;
             }
             isFormValid = false;
         }
@@ -32,6 +34,8 @@ form.addEventListener("submit", (event) => {
 
     if (!isFormValid) {
         event.preventDefault();
+        firstInvalidField.scrollIntoView({ behavior: "smooth", block: "center" });
+        firstInvalidField.focus();
     }
 });
 
@@ -94,6 +98,15 @@ const validateField = (field) => {
             isValid = false;
         } else if (field.value.length > 10) {
             errorElement.textContent = validationRules.largeSiteDescription;
+            isValid = false;
+        } else {
+            errorElement.textContent = "";
+        }
+    } else if (field.id === "placement") {
+        const radios = form.querySelectorAll('input[name="placement"]');
+        const isSelected = Array.from(radios).some(radio => radio.checked);
+        if (!isSelected) {
+            errorElement.textContent = validationRules[field.name];
             isValid = false;
         } else {
             errorElement.textContent = "";
