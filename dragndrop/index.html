@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset=UTF-8>
+    <title>drag&amp;drop</title>
+  </head>
+  <body style='min-height: 100vh'>
+<img src='http://fe.it-academy.by/Sites/0000007/sax.jpg'>
+<img src='http://fe.it-academy.by/Sites/0000007/Yin_and_Yang.png' width=100>
+<img src='http://fe.it-academy.by/Sites/0000007/Man-and-woman.png' width=150>
+<img src='http://fe.it-academy.by/Sites/0000007/No_smoking.png' style='padding-left: 50px'>
+
+<script>
+      let draggedElement = null;
+      let offsetX = 0;
+      let offsetY = 0; 
+      let zetIndex = 1000;
+      function onMouseDown(event) {
+        draggedElement = event.target;
+        const rect = draggedElement.getBoundingClientRect();
+        offsetX = event.clientX - rect.left;
+        offsetY = event.clientY - rect.top;
+    
+        draggedElement.style.cursor = 'grabbing';
+        document.addEventListener('mousemove', onMouseMove);
+        draggedElement.style.zIndex = ++zetIndex;
+        document.addEventListener('mouseup', onMouseUp);
+
+        event.preventDefault();
+      }
+
+      function onMouseMove(event) {
+        if (draggedElement) {
+          draggedElement.style.left = event.clientX - offsetX + 'px';
+          draggedElement.style.top = event.clientY - offsetY + 'px';
+        }
+      }
+
+      function onMouseUp() {
+        if (draggedElement) {
+          //draggedElement.style.zIndex = '';
+          draggedElement.style.cursor = '';
+          draggedElement = null;
+        }
+        document.removeEventListener('mousemove', onMouseMove);
+        document.removeEventListener('mouseup', onMouseUp);
+      }
+
+      document.querySelectorAll('img').forEach((img, index) => {
+        img.style.position = 'absolute';
+        img.style.width = '150px';
+        img.style.left = `${150 * index}px`;
+        img.style.cursor = 'grab';
+        img.addEventListener('mousedown', onMouseDown);
+      });
+</script>
+
+  </body>
+</html>
