@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clock</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+    #form-container {
+      margin-bottom: 20px;
+    }
+    .clock {
+      position: relative;
+      background-color: yellow;
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    .hour {
+      position: absolute;
+      background-color: green;
+      color: white;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .hour-arrow, .minute-arrow, .second-arrow {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform-origin: 50% 1%;
+      background-color: black;
+      border-radius: 40%;
+    }
+    #horizontalTimerContainer {
+      display: flex;
+      position: absolute;
+      left: 50%;
+      top: 25%;
+      transform: translate(-50%, 0);
+    }
+  </style>
+</head>
+<body>
+  <div id="form-container">
+    <input id="radius-input" type="number" placeholder="Enter clock diameter (200-800 px)" />
+    <button id="generate-clock">Generate Clock</button>
+  </div>
+  <div id="clock-container"></div>
+  <script src="script.js"></script>
+</body>
+</html>
